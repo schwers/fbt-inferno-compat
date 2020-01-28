@@ -1,11 +1,10 @@
 {
+  "passPerPreset": true,
   "presets": [
-    "@babel/preset-env"
-  ],
-  "plugins": [
-    "@babel/plugin-syntax-jsx",
-    "fbt",
-    "fbt-runtime",
-    "inferno"
+    {
+      "presets": ["@babel/preset-env"],
+      "plugins": ["@babel/plugin-syntax-jsx", "babel-plugin-fbt", "babel-plugin-fbt-runtime"]
+    },
+    {"plugins": ["inferno"]}
   ]
 }

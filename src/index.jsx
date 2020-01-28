@@ -6,12 +6,17 @@ import fbt, {
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import getInfernoResult from './getInfernoResult';
+
 const LOCALE = 'en-US';
 
 IntlViewerContext.locale = LOCALE;
-initFbt({ translations: {
-  [ LOCALE ]: {},
-}})
+initFbt({
+  translations: { [ LOCALE ]: {} },
+  hooks: {
+    getFbtResult: getInfernoResult,
+  },
+})
 
 const logAndReThrow = (testName, err) => {
   setTimeout(() => {
