@@ -3,37 +3,11 @@
  */
 import { VNodeFlags } from 'inferno-vnode-flags';
 import { createFragment, createVNode } from 'inferno';
-
-/**
- * Not currently exposed, but hangs off FbtResult
- *  import fbt {FbtResult} from 'fbt';
- *
- */
-function flattenToArray(
-  contents/*: $NestedFbtContentItems,*/
-)/*: Array<$FbtContentItem>*/ {
-  const result = [];
-  for (let ii = 0; ii < contents.length; ++ii) {
-    const content = contents[ii];
-
-    // Hack for accessing FbtResultBase.getContents()
-    if (content.getContents !== undefined &&
-        typeof content.getContents === 'function') {
-      content = content.getContents();
-    }
-
-    if (Array.isArray(content)) {
-      result.push.apply(result, flattenToArray(content));
-    } else {
-      result.push(content);
-    }
-  }
-  return result;
-}
+import { FbtResult } from 'fbt';
 
 function getInfernoResult(resolvedResultPayload) {
   const {contents} = resolvedResultPayload;
-  const flattenedContents = flattenToArray(contents);
+  const flattenedContents = FbtResult.flattenToArray(contents);
 
   // return createFragment(
   //   flattenedContents,
